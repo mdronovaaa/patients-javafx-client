@@ -1,0 +1,7 @@
+com\patientsfx\controller\PatientController.class
+com\patientsfx\service\PatientApiService$1.class
+com\patientsfx\Main.class
+com\patientsfx\model\Patient.class
+com\patientsfx\service\PatientApiService.class
+com\patientsfx\config\RestTemplateConfig.class
+com\patientsfx\controller\PatientController$1.class
