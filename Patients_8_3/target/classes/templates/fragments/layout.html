@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/extras/spring-security"
+      th:fragment="layout(title, content)">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title th:text="${title}">Patients App</title>
+    <link rel="stylesheet" th:href="@{/css/theme.css}"/>
+</head>
+<body>
+<header class="topbar">
+    <div class="container">
+        <a class="brand" th:href="@{/patients}">Patients</a>
+        <nav>
+            <a th:href="@{/patients}">Список</a>
+            <a sec:authorize="isAnonymous()" th:href="@{/login}">Войти</a>
+            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                <button class="link-button" type="submit">Выйти</button>
+            </form>
+        </nav>
+    </div>
+    <div class="theme-variant-9"></div>
+    <!-- unique variant 9 theme stripe -->
+</header>
+<main class="container" th:insert="${content}">
+</main>
+<footer class="footer container">
+    Вариант 9 · Пациенты
+</footer>
+</body>
+</html>
+
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout('Вход', ~{::section})}">
+<section>
+    <h1>Вход</h1>
+    <form method="post" th:action="@{/login}" class="card">
+        <label>Имя пользователя
+            <input type="text" name="username" required>
+        </label>
+        <label>Пароль
+            <input type="password" name="password" required>
+        </label>
+        <button class="btn" type="submit">Войти</button>
+        <p>
+            Нет аккаунта? <a th:href="@{/register}">Регистрация</a>
+        </p>
+        <p th:if="${param.error}">Неверные учетные данные</p>
+        <p th:if="${param.logout}">Вы вышли из системы</p>
+        <p th:if="${param.registered}">Успешная регистрация. Войдите.</p>
+    </form>
+</section>
+</html>
+
+

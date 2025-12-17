@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout('Редактировать пациента', ~{::section})}">
+<section>
+    <h1>Редактировать пациента</h1>
+    <form th:action="@{|/patients/${patient.id}|}" method="post" th:object="${patient}" class="card">
+        <label>Имя
+            <input type="text" th:field="*{name}" required>
+        </label>
+        <label>Дата рождения
+            <input type="date" th:field="*{birthDate}" required>
+        </label>
+        <label>Диагноз
+            <input type="text" th:field="*{diagnosis}" required>
+        </label>
+        <button class="btn" type="submit">Сохранить</button>
+        <a class="btn secondary" th:href="@{/patients}">Отмена</a>
+    </form>
+</section>
+</html>
+
+

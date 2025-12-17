@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout('Пациенты', ~{::section})}">
+<section xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+    <h1>Пациенты</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Дата рождения</th>
+            <th>Диагноз</th>
+            <th sec:authorize="hasRole('ADMIN')">Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${patients}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.birthDate}"></td>
+            <td th:text="${p.diagnosis}"></td>
+            <td sec:authorize="hasRole('ADMIN')">
+                <a class="btn" th:href="@{|/patients/${p.id}/edit|}">Редактировать</a>
+                <form th:action="@{|/patients/${p.id}/delete|}" method="post" style="display:inline">
+                    <button class="btn danger" type="submit">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div sec:authorize="hasRole('ADMIN')">
+        <h2>Добавить пациента</h2>
+        <form th:action="@{/patients}" method="post" th:object="${patient}" class="card">
+            <label>Имя
+                <input type="text" th:field="*{name}" required>
+            </label>
+            <label>Дата рождения
+                <input type="date" th:field="*{birthDate}" required>
+            </label>
+            <label>Диагноз
+                <input type="text" th:field="*{diagnosis}" required>
+            </label>
+            <button class="btn" type="submit">Сохранить</button>
+        </form>
+    </div>
+</section>
+</html>
+
+

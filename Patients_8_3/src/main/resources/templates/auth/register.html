@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout('Регистрация', ~{::section})}">
+<section>
+    <h1>Регистрация</h1>
+    <form method="post" th:action="@{/register}" class="card">
+        <label>Имя пользователя
+            <input type="text" name="username" required>
+        </label>
+        <label>Пароль
+            <input type="password" name="password" required>
+        </label>
+        <button class="btn" type="submit">Создать аккаунт</button>
+        <p th:if="${error}" th:text="${error}"></p>
+    </form>
+</section>
+</html>
+
+
